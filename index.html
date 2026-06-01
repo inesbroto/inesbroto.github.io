@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inés Broto Clemente — Sound & Music Technology, Data Scientist</title>
+  <meta name="description" content="Personal portfolio of Inés Broto Clemente, Sound & Music Technology engineer and Data Scientist based in Barcelona." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ff-display: 'DM Serif Display', serif;
+      --ff-body: 'Instrument Sans', sans-serif;
+      --ff-mono: 'DM Mono', monospace;
+      --c-bg: #fafaf8;
+      --c-surface: #fff;
+      --c-border: #e8e6e1;
+      --c-text: #1a1a18;
+      --c-muted: #6b6b68;
+      --c-accent: #2563eb;
+      --c-tag-bg: #f0f4ff;
+      --c-tag-text: #1e40af;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--c-border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-family: var(--ff-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--c-muted);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--c-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--c-text); }
+
+    /* LAYOUT */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 0.5px solid var(--c-border);
+    }
+    .hero-eyebrow {
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--c-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero-name {
+      font-family: var(--ff-display);
+      font-size: clamp(38px, 7vw, 52px);
+      line-height: 1.05;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-name em { font-style: italic; color: var(--c-muted); }
+    .hero-bio {
+      font-size: 16px;
+      color: var(--c-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: var(--ff-body);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: 0.5px solid var(--c-border);
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--c-text); color: #fff; border-color: var(--c-text); }
+    .btn-primary:hover { background: #333; }
+    .btn-ghost { background: transparent; color: var(--c-text); }
+    .btn-ghost:hover { background: var(--c-border); }
+
+    /* SECTIONS */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 0.5px solid var(--c-border);
+    }
+    section:last-child { border-bottom: none; }
+    .section-label {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--c-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .about-text { font-size: 15px; color: var(--c-muted); line-height: 1.75; }
+    .about-facts { display: flex; flex-direction: column; gap: 1rem; }
+    .fact { display: flex; flex-direction: column; gap: 2px; }
+    .fact-label {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--c-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .fact-value { font-size: 14px; color: var(--c-text); font-weight: 500; }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+    .exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; }
+    .exp-date {
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--c-muted);
+      padding-top: 2px;
+      line-height: 1.5;
+    }
+    .exp-title { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+    .exp-company { font-size: 13px; color: var(--c-muted); margin-bottom: 6px; }
+    .exp-desc { font-size: 14px; color: var(--c-muted); line-height: 1.65; }
+
+    /* PROJECTS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .project-card {
+      background: var(--c-surface);
+      border: 0.5px solid var(--c-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.15s;
+    }
+    .project-card:hover { border-color: #aaa; }
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .project-name { font-size: 15px; font-weight: 500; line-height: 1.3; }
+    .project-org { font-size: 12px; color: var(--c-muted); font-family: var(--ff-mono); margin-top: 2px; }
+    .project-link {
+      color: var(--c-muted);
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .project-link:hover { color: var(--c-text); }
+    .project-desc { font-size: 13px; color: var(--c-muted); line-height: 1.6; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      background: var(--c-tag-bg);
+      color: var(--c-tag-text);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* EXTRACURRICULAR */
+    .extra-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .extra-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .extra-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .extra-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+    .extra-desc { font-size: 13px; color: var(--c-muted); }
+
+    /* CONTACT */
+    .contact-intro {
+      font-size: 15px;
+      color: var(--c-muted);
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+    .contact-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--c-muted);
+      border-top: 0.5px solid var(--c-border);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#top" class="nav-name">inés.broto</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#extra">Activities</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <div class="hero" id="top">
+      <div class="hero-eyebrow">Sound & Music Technology · Data Science</div>
+      <h1 class="hero-name">
+        Inés Broto<br>
+        <em>where audio<br>meets AI.</em>
+      </h1>
+      <p class="hero-bio">
+        MSc student in Sound and Music Computing, blending research, engineering, and human-centered design
+        at the intersection of audio, music, technology, and AI. Based in Barcelona.
+      </p>
+      <div class="hero-links">
+        <a href="#contact" class="btn btn-primary">✉ Get in touch</a>
+        <a href="#projects" class="btn btn-ghost">◻ View projects</a>
+        <a href="CV_InesBroto_April26.pdf" class="btn btn-ghost" download>↓ Download CV</a>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About</div>
+      <div class="about-grid">
+        <p class="about-text">
+          I'm an engineer in Sound and Music Technology with a background in Data Science from UPC,
+          currently pursuing a Master's at UPF Barcelona after completing a year at Aalborg University in Copenhagen.<br><br>
+          My work blends ML research, signal processing, and creativity — from real-time sign language synthesis to
+          physical modeling of instruments. I care deeply about accessibility, human-centered AI, and the role of
+          technology in music and culture.
+        </p>
+        <div class="about-facts">
+          <div class="fact">
+            <span class="fact-label">Based in</span>
+            <span class="fact-value">Barcelona, Spain</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Specialties</span>
+            <span class="fact-value">Audio ML · NLP · MIR · DSP</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Tools</span>
+            <span class="fact-value">Python · PyTorch · HuggingFace · JUCE</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Education</span>
+            <span class="fact-value">MSc Sound & Music Tech, UPF (ongoing)<br>BSc Data Science & Engineering, UPC</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Languages</span>
+            <span class="fact-value">Spanish · Catalan · English · German (B1) · Danish</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">Experience</div>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-date">Mar 2026 —<br>Present</div>
+          <div>
+            <div class="exp-title">Teaching Assistant</div>
+            <div class="exp-company">Universitat Pompeu Fabra · Barcelona</div>
+            <div class="exp-desc">Deliver seminars on functional programming design to computer engineering and data science students. Foster critical thinking through interactive sessions and feedback-driven mentorship.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">Dec 2025 —<br>Mar 2026</div>
+          <div>
+            <div class="exp-title">Technical Research Assistant</div>
+            <div class="exp-company">SIGNARIA · Barcelona</div>
+            <div class="exp-desc">Designed an end-to-end pipeline for real-time sign language–to–speech generation in radio contexts. Built a computer vision system using MediaPipe for Catalan Sign Language gloss detection, integrated LLMs for semantic interpretation, and implemented LoRA-based TTS for identity-aligned synthetic voices.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">Feb 2022 —<br>Jul 2024</div>
+          <div>
+            <div class="exp-title">Junior Data Scientist</div>
+            <div class="exp-company">Acuity Trading S.L. · Barcelona</div>
+            <div class="exp-desc">Developed sentiment analysis pipelines for finance using classic NLP and transformer-based architectures. Built an automated AI-driven trading strategy system combining Technical Analysis indicators with financial news sentiment. Conducted deep statistical studies over price and sentiment data.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <div class="project-name">Sign Language → Speech</div>
+              <div class="project-org">SIGNARIA</div>
+            </div>
+          </div>
+          <p class="project-desc">End-to-end real-time pipeline converting Catalan Sign Language to speech for radio broadcast. Uses MediaPipe for gloss detection, LLMs for text generation, and LoRA-adapted TTS for personalized voice output.</p>
+          <div class="tags"><span class="tag">MediaPipe</span><span class="tag">LLMs</span><span class="tag">TTS</span><span class="tag">LoRA</span><span class="tag">CV</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <div class="project-name">Music Rebalancing for Hearing-Impaired Users</div>
+              <div class="project-org">Aalborg University</div>
+            </div>
+          </div>
+          <p class="project-desc">ML and DL source separation on classical ensemble recordings, combined with a multiband compressor and quality metrics for hearing aid–processed signals. Full end-to-end processing pipeline.</p>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Source Sep.</span><span class="tag">DSP</span><span class="tag">Audio ML</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <div class="project-name">IMU Sonic Feedback for Gait Correction</div>
+              <div class="project-org">Aalborg University</div>
+            </div>
+          </div>
+          <p class="project-desc">Real-time sonic feedback system mapping IMU motion data to sound characteristics via OSC for over-pronation correction during walking. Full embodied interaction pipeline design.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">OSC</span><span class="tag">IMU</span><span class="tag">Sonic Feedback</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <div class="project-name">FDTD Cajón Synthesizer</div>
+              <div class="project-org">Aalborg University</div>
+            </div>
+          </div>
+          <p class="project-desc">Physical modeling of Cajón sound using FDTD, waveguides, and modular synthesis. Developed a Python interface and a real-time Teensy-embedded modular synthesizer prototype (Cajín).</p>
+          <div class="tags"><span class="tag">FDTD</span><span class="tag">Python</span><span class="tag">Teensy</span><span class="tag">Physical Modelling</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <div class="project-name">Sentiment Analysis in Finance</div>
+              <div class="project-org">UPC · Acuity Trading</div>
+            </div>
+            <a href="#" class="project-link" aria-label="View thesis">↗</a>
+          </div>
+          <p class="project-desc">Bachelor's thesis comparing two NLP sentiment methodologies on 20 U.S. large-cap equities. Includes correlation screening, dependency parsing with spaCy, causality testing, and Backtrader strategy simulation.</p>
+          <div class="tags"><span class="tag">spaCy</span><span class="tag">NLP</span><span class="tag">Backtrader</span><span class="tag">Finance</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <div class="project-name">Analyst Ratings Parser</div>
+              <div class="project-org">Acuity Trading</div>
+            </div>
+          </div>
+          <p class="project-desc">Rule-based NLP parser using spaCy to extract structured data from financial analyst rating phrases, storing results in SQL. Includes string matching for stock recognition and a study of DL architecture limitations.</p>
+          <div class="tags"><span class="tag">spaCy</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">NLP</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXTRACURRICULAR -->
+    <section id="extra">
+      <div class="section-label">Extracurricular</div>
+      <div class="extra-list">
+
+        <div class="extra-item">
+          <div class="extra-dot"></div>
+          <div>
+            <div class="extra-title">Piano & Sol-fa — ABRSM Grade 5 Diploma</div>
+            <div class="extra-desc">Studied piano and sol-fa for seven years, performing in amateur concerts and official ABRSM exams. Still plays piano and guitar regularly.</div>
+          </div>
+        </div>
+
+        <div class="extra-item">
+          <div class="extra-dot"></div>
+          <div>
+            <div class="extra-title">Volunteer Teacher — Pokhara, Nepal (2019)</div>
+            <div class="extra-desc">Taught English and cared for children at a school and foster home in Pokhara during the summer of 2019.</div>
+          </div>
+        </div>
+
+        <div class="extra-item">
+          <div class="extra-dot"></div>
+          <div>
+            <div class="extra-title">Private Tutor — Maths, Physics & English (2017–2022)</div>
+            <div class="extra-desc">Tutored students aged 12–18 in maths, physics, and Cambridge First Certificate preparation in Catalan, Spanish, and English.</div>
+          </div>
+        </div>
+
+        <div class="extra-item">
+          <div class="extra-dot"></div>
+          <div>
+            <div class="extra-title">Dance</div>
+            <div class="extra-desc">Passionate about dance as a form of expression and physical practice — a regular part of life outside of work and research.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <p class="contact-intro">
+        Open to research collaborations, internships, and projects at the intersection of audio, AI, and music technology.
+      </p>
+      <div class="contact-row">
+        <a href="mailto:inesbc3000@gmail.com" class="btn btn-primary">✉ inesbc3000@gmail.com</a>
+        <a href="https://linkedin.com/in/inesbrotoclemente" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/inesbroto" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="tel:+34626238101" class="btn btn-ghost">+34 626 238 101</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Built with plain HTML · Hosted on GitHub Pages</span>
+  </footer>
+
+</body>
+</html>
